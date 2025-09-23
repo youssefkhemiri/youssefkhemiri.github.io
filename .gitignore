@@ -1,16 +1,4 @@
-# Python files (legacy from Flask version)
-__pycache__/
-*.py[cod]
-*$py.class
-app.py
-portfolio_data.py
-requirements.txt
-
 # Development files
-CUSTOMIZATION_GUIDE.md
-JSON_GUIDE.md
-junk.txt
-data.json
 *.log
 
 # OS generated files
