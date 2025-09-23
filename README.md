@@ -1,14 +1,16 @@
-# Youssef Portfolio - Python Flask Application
+# Youssef Khemiri Portfolio
 
-A modern, responsive portfolio website built with **Python Flask** and **pure server-side rendering** (no JavaScript required).
+A modern, responsive portfolio website showcasing my skills, projects, and experience as a Computer Science student and software developer.
+
+🌐 **Live Site:** [https://youssefkhemiri.github.io](https://youssefkhemiri.github.io)
 
 ## 🚀 Features
 
-- **Pure Python Backend**: Built with Flask for server-side rendering
-- **No JavaScript Dependencies**: All functionality handled server-side
 - **Responsive Design**: Modern CSS with mobile-first approach
+- **Single Page Application**: Client-side navigation using JavaScript
 - **Interactive Chatbot**: AI assistant with keyword-based responses
 - **5 Main Sections**: Home, Career, Projects, Involvements, Chatbot
+- **GitHub Pages Ready**: Static website optimized for GitHub Pages hosting
 - **Easy Content Management**: Separate data configuration file
 - **Session-based Chat**: Persistent chat history during session
 

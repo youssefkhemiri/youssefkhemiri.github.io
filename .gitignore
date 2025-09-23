@@ -1,6 +1,34 @@
-/CUSTOMIZATION_GUIDE.md
-/data.json
-/JSON_GUIDE.md
-/junk.txt
-/portfolio_data.py
-/__pycache__
+# Python files (legacy from Flask version)
+__pycache__/
+*.py[cod]
+*$py.class
+app.py
+portfolio_data.py
+requirements.txt
+
+# Development files
+CUSTOMIZATION_GUIDE.md
+JSON_GUIDE.md
+junk.txt
+data.json
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
