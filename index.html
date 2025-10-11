@@ -52,12 +52,12 @@
         </div>
 
         <!-- Download CV Button - Commented Out -->
-        <!-- 
+        
         <a href="static/assets/Youssef_Khemiri_CV_ENG.pdf" class="resume-btn" download>
             <i class="fas fa-download"></i>
             Download Resume
         </a>
-        -->
+       
     </aside>
 
     <!-- Main Content Area -->
@@ -93,9 +93,12 @@
                     <h3><i class="fas fa-user"></i> About Me</h3>
                     <p>
                         I’m an AI Engineer / Data Scientist with 2+ years of experience delivering AI solutions, data engineering,
-                        and process automation. I’ve built LLM-enabled scrapers, ML APIs, and MLOps pipelines on AWS; taught Python;
+                        and process automation. Currently resident in Germany for an exchange semester in Data Science, Looking for End-of-Studies Internship.
+                        if you're looking for a motivated intern, a problem solver, an innovative mind, and a quick learner, feel free to reach out!
+                        <!-- Problem solver, quick learner, and passionate about leveraging AI to solve real-world problems. -->
+                        <!-- I’ve built LLM-enabled apps, ML models, and pipelines on AWS; taught Python;
                         and shipped projects for clients as a Top-Rated Upwork freelancer. I love turning messy, real-world data into
-                        reliable systems that ship value.
+                        reliable systems that ship value. -->
                     </p>
                 </div>
 
@@ -213,6 +216,22 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-date-container">
+                        <div class="timeline-date">Mar 2023 – Present</div>
+                        <span class="duration-badge">2 years and ongoing</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>AI Engineer</h3>
+                        <h4>42Robots AI (USA — Remote)</h4>
+                        <ul>
+                            <li>Developed AI-driven automation systems to improve decision-making & efficiency.</li>
+                            <li>Automated large-scale data extraction with web scraping + LLMs; built APIs on AWS EC2 with data on RDS.</li>
+                            <li>Collaborated cross-functionally; provided on-call support for production systems.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date-container">
                         <div class="timeline-date">Jul 2025 – Aug 2025</div>
                         <span class="duration-badge">2 months</span>
                     </div>
@@ -222,22 +241,6 @@
                         <ul>
                             <li>Built a real-estate price prediction system using ML, LLMs, and MLOps best practices.</li>
                             <li>Scraped Tunisian real-estate sites and enriched data via LLM description analysis.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date-container">
-                        <div class="timeline-date">Mar 2023 – Jun 2025</div>
-                        <span class="duration-badge">2 years 3 months</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>AI Engineer</h3>
-                        <h4>42Robots AI (USA — Remote)</h4>
-                        <ul>
-                            <li>Developed AI-driven automation systems to improve decision-making & efficiency.</li>
-                            <li>Automated large-scale data extraction with web scraping + LLMs; built APIs on AWS EC2 with data on RDS.</li>
-                            <li>Collaborated cross-functionally; provided on-call support for production systems.</li>
                         </ul>
                     </div>
                 </div>
@@ -323,71 +326,388 @@
             </div>
 
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card" data-project="pulmonary">
                     <div class="project-image">
-                        <img src="static/assets/images/pulmo.jpg" alt="Pulmonary Nodule Detection" style="width:100%; height:200px; object-fit:cover;">
+                        <img src="static/assets/images/portfolio.jpg" alt="Pulmonary Nodule Detection" loading="lazy">
+                        <div class="project-overlay">
+                            <button class="view-details-btn">
+                                <i class="fas fa-eye"></i>
+                                View Details
+                            </button>
+                        </div>
                     </div>
                     <div class="project-content">
-                        <h3>Automatic Detection of Pulmonary Nodules</h3>
-                        <p>Applied DL for detection, classification, and analysis of pulmonary nodules; awarded Best Project among Data Science classes.</p>
+                        <div class="project-header">
+                            <h3>Automatic Detection of Pulmonary Nodules</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                                <span class="award-badge">🏆 Best Project</span>
+                            </div>
+                        </div>
+                        <p class="project-summary">Applied Deep Learning for detection, classification, and analysis of pulmonary nodules in medical imaging. Awarded Best Project among Data Science classes.</p>
+                        <div class="project-details">
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>2023</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-users"></i>
+                                    <span>Team of 3</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-clock"></i>
+                                    <span>4 months</span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="project-tech">
-                            <span class="tech-tag">Python</span><span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">CNN</span><span class="tech-tag">Medical Imaging</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">CNN</span>
+                            <span class="tech-tag">Medical Imaging</span>
+                            <span class="tech-tag">OpenCV</span>
                         </div>
                         <div class="project-links">
-                            <!-- Add links if public -->
-                            <!-- <a href="#" class="btn-secondary" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a> -->
+                            <button class="btn-primary view-details-btn" data-project="pulmonary">
+                                <i class="fas fa-info-circle"></i> View Details
+                            </button>
                             <!-- <a href="#" class="btn-secondary" target="_blank"><i class="fab fa-github"></i> GitHub</a> -->
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" data-project="mars">
                     <div class="project-image">
-                        <img src="static/assets/images/mars.jpg" alt="Mars Crater Segmentation" style="width:100%; height:200px; object-fit:cover;">
-                    </div>
-                    <div class="project-content">
-                        <h3>Segmentation CNN for Mars Crater Detection</h3>
-                        <p>Reproduced research with improved data pipelines; trained U-Net on large 7680×7680 satellite images.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">U-Net</span><span class="tech-tag">Computer Vision</span>
-                            <span class="tech-tag">Python</span><span class="tech-tag">DL</span>
+                        <img src="static/assets/images/portfolio.jpg" alt="Mars Crater Segmentation" loading="lazy">
+                        <div class="project-overlay">
+                            <button class="view-details-btn">
+                                <i class="fas fa-eye"></i>
+                                View Details
+                            </button>
                         </div>
-                        <div class="project-links"></div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="static/assets/images/forecast.jpg" alt="Cab Booking Demand Forecasting" style="width:100%; height:200px; object-fit:cover;">
                     </div>
                     <div class="project-content">
-                        <h3>Forecast Cab Booking Demand</h3>
-                        <p>Built ML forecasting achieving ~0.1 RMSE; feature engineering, correlation analysis, and GridSearchCV tuning.</p>
+                        <div class="project-header">
+                            <h3>Mars Crater Detection with U-Net</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-summary">Reproduced research paper with improved data pipelines and trained U-Net architecture on large 7680×7680 satellite images for crater detection.</p>
+                        <div class="project-details">
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>2023</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-user"></i>
+                                    <span>Solo Project</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-clock"></i>
+                                    <span>3 months</span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="project-tech">
-                            <span class="tech-tag">Scikit-learn</span><span class="tech-tag">Forecasting</span>
                             <span class="tech-tag">Python</span>
+                            <span class="tech-tag">U-Net</span>
+                            <span class="tech-tag">Computer Vision</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">Satellite Imagery</span>
                         </div>
-                        <div class="project-links"></div>
+                        <div class="project-links">
+                            <button class="btn-primary view-details-btn" data-project="mars">
+                                <i class="fas fa-info-circle"></i> View Details
+                            </button>
+                            <a href="https://github.com/youssefkhemiri/mars-crater-detection" class="btn-secondary" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" data-project="forecast">
                     <div class="project-image">
-                        <img src="static/assets/images/realestate.jpg" alt="Real Estate Price Prediction" style="width:100%; height:200px; object-fit:cover;">
+                        <img src="static/assets/images/portfolio.jpg" alt="Cab Booking Demand Forecasting" loading="lazy">
+                        <div class="project-overlay">
+                            <button class="view-details-btn">
+                                <i class="fas fa-eye"></i>
+                                View Details
+                            </button>
+                        </div>
                     </div>
                     <div class="project-content">
-                        <h3>Real-Estate Price Prediction (Tunisia)</h3>
-                        <p>End-to-end pipeline: multi-site scraping, LLM-aided description analysis, and MLOps-ready model for pricing.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span><span class="tech-tag">LLMs</span>
-                            <span class="tech-tag">MLOps</span><span class="tech-tag">AWS</span>
+                        <div class="project-header">
+                            <h3>Cab Booking Demand Forecasting</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
                         </div>
-                        <div class="project-links"></div>
+                        <p class="project-summary">Built ML forecasting model achieving ~0.1 RMSE through feature engineering, correlation analysis, and GridSearchCV hyperparameter tuning.</p>
+                        <div class="project-details">
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>2023</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-users"></i>
+                                    <span>Team of 2</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-clock"></i>
+                                    <span>6 weeks</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Forecasting</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Matplotlib</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="btn-primary view-details-btn" data-project="forecast">
+                                <i class="fas fa-info-circle"></i> View Details
+                            </button>
+                            <!-- <a href="#" class="btn-secondary" target="_blank"><i class="fab fa-github"></i> GitHub</a> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-project="realestate">
+                    <div class="project-image">
+                        <img src="static/assets/images/portfolio.jpg" alt="Real Estate Price Prediction" loading="lazy">
+                        <div class="project-overlay">
+                            <button class="view-details-btn">
+                                <i class="fas fa-eye"></i>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Real-Estate Price Prediction (Tunisia)</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-summary">End-to-end pipeline with multi-site scraping, LLM-aided description analysis, and MLOps-ready model for accurate property pricing in Tunisian market.</p>
+                        <div class="project-details">
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>2024</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-user"></i>
+                                    <span>Solo Project</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-clock"></i>
+                                    <span>8 weeks</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">LLMs</span>
+                            <span class="tech-tag">MLOps</span>
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">BeautifulSoup</span>
+                            <span class="tech-tag">FastAPI</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="btn-primary view-details-btn" data-project="realestate">
+                                <i class="fas fa-info-circle"></i> View Details
+                            </button>
+                            <a href="https://github.com/youssefkhemiri/tunisia-realestate-prediction" class="btn-secondary" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-project="weather">
+                    <div class="project-image">
+                        <img src="static/assets/images/weather_app.jpg" alt="Weather Dashboard Application" loading="lazy">
+                        <div class="project-overlay">
+                            <button class="view-details-btn">
+                                <i class="fas fa-eye"></i>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Weather Dashboard Application</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-summary">Interactive weather dashboard with real-time data, forecasts, and beautiful visualizations. Features responsive design and location-based weather tracking.</p>
+                        <div class="project-details">
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>2023</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-user"></i>
+                                    <span>Solo Project</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-clock"></i>
+                                    <span>3 weeks</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Weather API</span>
+                            <span class="tech-tag">Chart.js</span>
+                            <span class="tech-tag">CSS3</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="btn-primary view-details-btn" data-project="weather">
+                                <i class="fas fa-info-circle"></i> View Details
+                            </button>
+                            <a href="https://weather-dashboard-demo.netlify.app" class="btn-secondary" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-project="webscraper">
+                    <div class="project-image">
+                        <img src="static/assets/images/web_scraper.jpg" alt="Web Scraper Tool" loading="lazy">
+                        <div class="project-overlay">
+                            <button class="view-details-btn">
+                                <i class="fas fa-eye"></i>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Intelligent Web Scraper</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-summary">Advanced web scraping tool with AI-powered content extraction, data cleaning, and automated export capabilities for multiple formats.</p>
+                        <div class="project-details">
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>2023</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-user"></i>
+                                    <span>Solo Project</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-clock"></i>
+                                    <span>4 weeks</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">BeautifulSoup</span>
+                            <span class="tech-tag">Selenium</span>
+                            <span class="tech-tag">Scrapy</span>
+                            <span class="tech-tag">Pandas</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="btn-primary view-details-btn" data-project="webscraper">
+                                <i class="fas fa-info-circle"></i> View Details
+                            </button>
+                            <a href="https://github.com/youssefkhemiri/intelligent-web-scraper" class="btn-secondary" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Project Detail Modal -->
+        <div id="projectModal" class="project-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Project Title</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-image-gallery">
+                        <div class="main-image">
+                            <img id="modalMainImage" src="" alt="">
+                        </div>
+                        <div class="image-thumbnails" id="modalThumbnails">
+                            <!-- Thumbnails will be inserted here -->
+                        </div>
+                    </div>
+                    <div class="modal-details">
+                        <div class="modal-info">
+                            <div class="project-overview">
+                                <h3>Overview</h3>
+                                <p id="modalOverview"></p>
+                            </div>
+                            <div class="project-features">
+                                <h3>Key Features</h3>
+                                <ul id="modalFeatures"></ul>
+                            </div>
+                            <div class="project-challenges">
+                                <h3>Challenges & Solutions</h3>
+                                <p id="modalChallenges"></p>
+                            </div>
+                            <div class="project-results">
+                                <h3>Results & Impact</h3>
+                                <p id="modalResults"></p>
+                            </div>
+                        </div>
+                        <div class="modal-meta">
+                            <div class="project-stats-detailed">
+                                <h3>Project Details</h3>
+                                <div class="stats-grid">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Duration</span>
+                                        <span class="stat-value" id="modalDuration"></span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Team Size</span>
+                                        <span class="stat-value" id="modalTeam"></span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Year</span>
+                                        <span class="stat-value" id="modalYear"></span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Status</span>
+                                        <span class="stat-value" id="modalStatus"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-tech-detailed">
+                                <h3>Technologies Used</h3>
+                                <div id="modalTech" class="tech-tags-detailed"></div>
+                            </div>
+                            <div class="project-links-detailed">
+                                <h3>Links</h3>
+                                <div id="modalLinks" class="links-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></section>
 
         <!-- Involvements Page -->
         <section id="involvements" class="page">

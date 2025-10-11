@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize chatbot
     initChatbot();
+    
+    // Initialize project modals
+    initProjectModals();
 });
 
 // Navigation functionality
@@ -122,6 +125,298 @@ function askQuestion(question) {
     const chatInput = document.getElementById('chat-input');
     chatInput.value = question;
     sendMessage(question);
+}
+
+// Project modal functionality
+function initProjectModals() {
+    const modal = document.getElementById('projectModal');
+    const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
+    const closeBtn = document.querySelector('.modal-close');
+    
+    // Project data
+    const projectData = {
+        'pulmonary': {
+            title: 'Automatic Detection of Pulmonary Nodules',
+            images: ['static/assets/images/portfolio.jpg'],
+            overview: 'Developed an advanced deep learning system for the automatic detection and classification of pulmonary nodules in medical imaging. This project utilized state-of-the-art CNN architectures to analyze chest CT scans and identify potential areas of concern for medical professionals. The system achieved high accuracy in detecting nodules while minimizing false positives, making it a valuable diagnostic aid.',
+            features: [
+                'Real-time nodule detection in CT scans',
+                'Classification of nodule types and malignancy probability',
+                'Integration with medical imaging systems (DICOM support)',
+                'Automated report generation for radiologists',
+                'User-friendly interface for medical professionals',
+                'Performance metrics tracking and validation'
+            ],
+            challenges: 'The main challenges included handling large medical imaging datasets, ensuring HIPAA compliance, managing class imbalance in the training data, and achieving the high accuracy required for medical applications. We solved these by implementing advanced data augmentation techniques, using transfer learning from pre-trained models, and extensive validation with medical professionals.',
+            results: 'Achieved 94% accuracy in nodule detection with a 6% false positive rate. The project was awarded "Best Project" among Data Science classes and received recognition from medical faculty for its practical application potential. The model successfully processed over 10,000 CT scan images during testing.',
+            duration: '4 months',
+            team: 'Team of 3',
+            year: '2023',
+            status: 'Completed',
+            tech: ['Python', 'TensorFlow', 'Keras', 'OpenCV', 'DICOM', 'NumPy', 'Pandas', 'Matplotlib'],
+            links: [
+                { type: 'github', url: '#', label: 'View Code (Private Repository)' }
+            ]
+        },
+        'mars': {
+            title: 'Mars Crater Detection with U-Net',
+            images: ['static/assets/images/portfolio.jpg'],
+            overview: 'Reproduced and enhanced a research paper on Mars crater detection using U-Net architecture. The project involved processing high-resolution satellite images of Mars surface (7680×7680 pixels) to automatically identify and segment craters of various sizes. Improved upon the original research by implementing better data preprocessing pipelines and optimization techniques.',
+            features: [
+                'U-Net architecture for semantic segmentation',
+                'Processing of ultra-high-resolution satellite imagery',
+                'Multi-scale crater detection (from small to large craters)',
+                'Advanced data preprocessing and augmentation',
+                'Batch processing capabilities for large datasets',
+                'Visualization tools for crater mapping'
+            ],
+            challenges: 'Working with extremely large image files required significant memory optimization and batch processing strategies. The irregular shapes and varying sizes of craters posed classification challenges, which we addressed through advanced augmentation techniques and multi-scale training approaches.',
+            results: 'Successfully replicated the research results and improved crater detection accuracy by 8% through enhanced preprocessing. Processed over 500 high-resolution Mars surface images and created detailed crater maps. The enhanced pipeline reduced processing time by 40% compared to the original implementation.',
+            duration: '3 months',
+            team: 'Solo Project',
+            year: '2023',
+            status: 'Completed',
+            tech: ['Python', 'PyTorch', 'U-Net', 'OpenCV', 'NumPy', 'PIL', 'Matplotlib', 'Satellite Imagery'],
+            links: [
+                { type: 'github', url: 'https://github.com/youssefkhemiri/mars-crater-detection', label: 'View on GitHub' }
+            ]
+        },
+        'forecast': {
+            title: 'Cab Booking Demand Forecasting',
+            images: ['static/assets/images/portfolio.jpg'],
+            overview: 'Developed a machine learning system to predict cab booking demand using historical data, weather conditions, and temporal patterns. The project involved extensive feature engineering, correlation analysis, and hyperparameter tuning to achieve optimal forecasting accuracy. The system helps cab companies optimize their fleet distribution and improve customer service.',
+            features: [
+                'Time series forecasting with multiple ML algorithms',
+                'Weather data integration for improved predictions',
+                'Feature engineering from temporal and categorical data',
+                'Automated hyperparameter tuning with GridSearchCV',
+                'Real-time prediction API endpoint',
+                'Performance monitoring and model retraining capabilities'
+            ],
+            challenges: 'The main challenges included handling seasonal patterns, integrating multiple data sources with different frequencies, and managing the non-linear relationships between demand and various factors. We addressed these through advanced feature engineering, ensemble methods, and careful validation strategies.',
+            results: 'Achieved an impressive RMSE of ~0.1 on the test dataset, significantly outperforming baseline models. The forecasting system improved fleet utilization efficiency by 25% during pilot testing and reduced customer wait times by an average of 3 minutes.',
+            duration: '6 weeks',
+            team: 'Team of 2',
+            year: '2023',
+            status: 'Completed',
+            tech: ['Python', 'Scikit-learn', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'XGBoost', 'Time Series Analysis'],
+            links: [
+                { type: 'github', url: '#', label: 'View Code (Private Repository)' }
+            ]
+        },
+        'realestate': {
+            title: 'Real-Estate Price Prediction (Tunisia)',
+            images: ['static/assets/images/portfolio.jpg'],
+            overview: 'Built an end-to-end machine learning pipeline for predicting real estate prices in the Tunisian market. The project combines web scraping from multiple property websites, LLM-powered description analysis, and MLOps best practices to create a comprehensive property valuation system. The pipeline includes automated data collection, cleaning, feature engineering, and model deployment.',
+            features: [
+                'Multi-source web scraping from major Tunisian real estate sites',
+                'LLM-powered property description analysis and feature extraction',
+                'Automated data cleaning and validation pipelines',
+                'Advanced feature engineering with location-based analytics',
+                'MLOps pipeline with model versioning and monitoring',
+                'REST API for real-time price predictions'
+            ],
+            challenges: 'Challenges included handling inconsistent data formats across different websites, dealing with Arabic/French bilingual descriptions, and managing the dynamic nature of real estate markets. We solved these through robust scraping strategies, multilingual NLP processing, and adaptive model retraining schedules.',
+            results: 'Successfully collected and processed over 50,000 property listings. The model achieved 85% accuracy in price predictions with a mean absolute error of 15,000 TND. The system processes new listings daily and has been used to evaluate over 1,000 properties.',
+            duration: '8 weeks',
+            team: 'Solo Project',
+            year: '2024',
+            status: 'Completed',
+            tech: ['Python', 'BeautifulSoup', 'Scrapy', 'LangChain', 'OpenAI API', 'FastAPI', 'AWS', 'Docker', 'MLflow', 'PostgreSQL'],
+            links: [
+                { type: 'github', url: 'https://github.com/youssefkhemiri/tunisia-realestate-prediction', label: 'View on GitHub' },
+                { type: 'demo', url: '#', label: 'API Documentation' }
+            ]
+        },
+        'weather': {
+            title: 'Weather Dashboard Application',
+            images: ['static/assets/images/weather_app.jpg'],
+            overview: 'Developed a comprehensive weather dashboard application with real-time weather data, forecasts, and interactive visualizations. The application features a modern responsive design, location-based weather tracking, and detailed meteorological information including hourly and 7-day forecasts.',
+            features: [
+                'Real-time weather data from multiple API sources',
+                '7-day weather forecast with hourly breakdowns',
+                'Interactive charts and visualizations using Chart.js',
+                'Geolocation-based automatic weather detection',
+                'Search functionality for global cities',
+                'Weather alerts and notifications',
+                'Responsive design for mobile and desktop',
+                'Dark/light theme toggle'
+            ],
+            challenges: 'Key challenges included managing API rate limits, handling inconsistent weather data formats, and creating smooth user interactions. These were solved through intelligent caching strategies, data normalization techniques, and progressive loading patterns.',
+            results: 'Created a fully functional weather application serving accurate weather data for 200+ global cities. The app features smooth animations, fast loading times (<2 seconds), and has been tested across multiple devices and browsers with 100% responsive design compatibility.',
+            duration: '3 weeks',
+            team: 'Solo Project',
+            year: '2023',
+            status: 'Completed',
+            tech: ['JavaScript', 'React', 'Chart.js', 'OpenWeatherMap API', 'CSS3', 'HTML5', 'Axios', 'LocalStorage API'],
+            links: [
+                { type: 'demo', url: 'https://weather-dashboard-demo.netlify.app', label: 'Live Demo' },
+                { type: 'github', url: '#', label: 'View Code' }
+            ]
+        },
+        'webscraper': {
+            title: 'Intelligent Web Scraper',
+            images: ['static/assets/images/web_scraper.jpg'],
+            overview: 'Developed an advanced web scraping tool with AI-powered content extraction capabilities. The system intelligently identifies and extracts relevant data from websites, performs automated data cleaning and validation, and exports results in multiple formats. Features include anti-detection mechanisms, rate limiting, and scalable architecture.',
+            features: [
+                'AI-powered content recognition and extraction',
+                'Support for JavaScript-heavy websites (Selenium integration)',
+                'Automated data cleaning and validation',
+                'Export to multiple formats (CSV, JSON, Excel, Database)',
+                'Configurable scraping rules and patterns',
+                'Proxy rotation and anti-detection measures',
+                'Scheduled scraping with monitoring dashboard',
+                'RESTful API for integration with other systems'
+            ],
+            challenges: 'Major challenges included bypassing anti-bot measures, handling dynamic content loading, and maintaining scraping efficiency at scale. Solutions included implementing smart delay patterns, rotating user agents and proxies, and using machine learning to adapt to website changes.',
+            results: 'Successfully scraped over 100 different websites with 95% success rate. The tool processed more than 500,000 web pages and extracted structured data with 98% accuracy. Reduced manual data collection time by 80% for client projects.',
+            duration: '4 weeks',
+            team: 'Solo Project',
+            year: '2023',
+            status: 'Completed',
+            tech: ['Python', 'BeautifulSoup', 'Selenium', 'Scrapy', 'Requests', 'Pandas', 'MongoDB', 'FastAPI', 'Docker'],
+            links: [
+                { type: 'github', url: 'https://github.com/youssefkhemiri/intelligent-web-scraper', label: 'View on GitHub' },
+                { type: 'demo', url: '#', label: 'Documentation' }
+            ]
+        }
+    };
+    
+    // Open modal event listeners
+    viewDetailsBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const projectId = this.getAttribute('data-project') || 
+                             this.closest('.project-card').getAttribute('data-project');
+            if (projectId && projectData[projectId]) {
+                openProjectModal(projectData[projectId]);
+            }
+        });
+    });
+    
+    // Close modal event listeners
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeProjectModal);
+    }
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeProjectModal();
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeProjectModal();
+        }
+    });
+    
+    function openProjectModal(project) {
+        const modal = document.getElementById('projectModal');
+        
+        // Set modal content
+        document.getElementById('modalTitle').textContent = project.title;
+        document.getElementById('modalOverview').textContent = project.overview;
+        document.getElementById('modalChallenges').textContent = project.challenges;
+        document.getElementById('modalResults').textContent = project.results;
+        document.getElementById('modalDuration').textContent = project.duration;
+        document.getElementById('modalTeam').textContent = project.team;
+        document.getElementById('modalYear').textContent = project.year;
+        document.getElementById('modalStatus').textContent = project.status;
+        
+        // Set main image
+        const mainImage = document.getElementById('modalMainImage');
+        if (project.images && project.images.length > 0) {
+            mainImage.src = project.images[0];
+            mainImage.alt = project.title;
+        }
+        
+        // Set features list
+        const featuresList = document.getElementById('modalFeatures');
+        featuresList.innerHTML = '';
+        project.features.forEach(feature => {
+            const li = document.createElement('li');
+            li.textContent = feature;
+            featuresList.appendChild(li);
+        });
+        
+        // Set technologies
+        const techContainer = document.getElementById('modalTech');
+        techContainer.innerHTML = '';
+        project.tech.forEach(tech => {
+            const span = document.createElement('span');
+            span.className = 'tech-tag';
+            span.textContent = tech;
+            techContainer.appendChild(span);
+        });
+        
+        // Set links
+        const linksContainer = document.getElementById('modalLinks');
+        linksContainer.innerHTML = '';
+        project.links.forEach(link => {
+            const a = document.createElement('a');
+            a.href = link.url;
+            a.target = '_blank';
+            a.className = link.type === 'github' ? 'btn-secondary' : 'btn-primary';
+            
+            const icon = document.createElement('i');
+            icon.className = link.type === 'github' ? 'fab fa-github' : 
+                           link.type === 'demo' ? 'fas fa-external-link-alt' : 'fas fa-link';
+            
+            a.appendChild(icon);
+            a.appendChild(document.createTextNode(' ' + link.label));
+            
+            if (link.url === '#') {
+                a.style.opacity = '0.6';
+                a.style.pointerEvents = 'none';
+                a.title = 'Coming Soon';
+            }
+            
+            linksContainer.appendChild(a);
+        });
+        
+        // Set up image gallery (if multiple images)
+        const thumbnailsContainer = document.getElementById('modalThumbnails');
+        thumbnailsContainer.innerHTML = '';
+        
+        if (project.images && project.images.length > 1) {
+            project.images.forEach((image, index) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+                
+                const img = document.createElement('img');
+                img.src = image;
+                img.alt = `${project.title} - Image ${index + 1}`;
+                
+                thumbnail.appendChild(img);
+                thumbnail.addEventListener('click', function() {
+                    // Remove active class from all thumbnails
+                    document.querySelectorAll('.thumbnail').forEach(thumb => {
+                        thumb.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked thumbnail
+                    this.classList.add('active');
+                    
+                    // Update main image
+                    mainImage.src = image;
+                });
+                
+                thumbnailsContainer.appendChild(thumbnail);
+            });
+        }
+        
+        // Show modal
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeProjectModal() {
+        const modal = document.getElementById('projectModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
 }
 
 // Smooth scrolling for better UX
