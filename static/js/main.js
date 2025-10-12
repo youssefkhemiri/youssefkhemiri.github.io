@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize project modals
     initProjectModals();
+    
+    // Initialize gallery
+    initGallery();
 });
 
 // Navigation functionality
@@ -416,6 +419,118 @@ function initProjectModals() {
         const modal = document.getElementById('projectModal');
         modal.classList.remove('active');
         document.body.style.overflow = 'auto';
+    }
+}
+
+// Gallery functionality
+function initGallery() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryModal = document.getElementById('galleryModal');
+    const modalImage = document.getElementById('galleryModalImage');
+    const modalTitle = document.getElementById('galleryModalTitle');
+    const modalDescription = document.getElementById('galleryModalDescription');
+    const modalClose = document.querySelector('.gallery-modal-close');
+    const prevBtn = document.getElementById('galleryPrev');
+    const nextBtn = document.getElementById('galleryNext');
+    
+    let currentImageIndex = 0;
+    let visibleImages = Array.from(galleryItems);
+    
+    // Filter functionality
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            
+            // Update active filter button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter gallery items
+            galleryItems.forEach(item => {
+                if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+            
+            // Update visible images array
+            visibleImages = Array.from(galleryItems).filter(item => !item.classList.contains('hidden'));
+        });
+    });
+    
+    // Open modal on gallery item click
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', function() {
+            const img = this.querySelector('img');
+            const title = this.querySelector('.gallery-info h4').textContent;
+            const description = this.querySelector('.gallery-info p').textContent;
+            
+            currentImageIndex = visibleImages.indexOf(this);
+            openGalleryModal(img.src, img.alt, title, description);
+        });
+    });
+    
+    // Close modal
+    modalClose.addEventListener('click', closeGalleryModal);
+    galleryModal.addEventListener('click', function(e) {
+        if (e.target === galleryModal) {
+            closeGalleryModal();
+        }
+    });
+    
+    // Navigation buttons
+    prevBtn.addEventListener('click', function() {
+        currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : visibleImages.length - 1;
+        showCurrentImage();
+    });
+    
+    nextBtn.addEventListener('click', function() {
+        currentImageIndex = currentImageIndex < visibleImages.length - 1 ? currentImageIndex + 1 : 0;
+        showCurrentImage();
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (galleryModal.classList.contains('active')) {
+            if (e.key === 'Escape') {
+                closeGalleryModal();
+            } else if (e.key === 'ArrowLeft') {
+                prevBtn.click();
+            } else if (e.key === 'ArrowRight') {
+                nextBtn.click();
+            }
+        }
+    });
+    
+    function openGalleryModal(src, alt, title, description) {
+        modalImage.src = src;
+        modalImage.alt = alt;
+        modalTitle.textContent = title;
+        modalDescription.textContent = description;
+        
+        galleryModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeGalleryModal() {
+        galleryModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    function showCurrentImage() {
+        if (visibleImages.length > 0) {
+            const currentItem = visibleImages[currentImageIndex];
+            const img = currentItem.querySelector('img');
+            const title = currentItem.querySelector('.gallery-info h4').textContent;
+            const description = currentItem.querySelector('.gallery-info p').textContent;
+            
+            modalImage.src = img.src;
+            modalImage.alt = img.alt;
+            modalTitle.textContent = title;
+            modalDescription.textContent = description;
+        }
     }
 }
 
