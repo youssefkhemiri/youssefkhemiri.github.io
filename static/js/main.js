@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize dynamic duration calculation
     initDynamicDuration();
+    
+    // Initialize page navigation arrows
+    initPageNavigation();
 });
 
 // Navigation functionality
@@ -38,6 +41,61 @@ function initNavigation() {
             const targetPageElement = document.getElementById(targetPage);
             if (targetPageElement) {
                 targetPageElement.classList.add('active');
+                
+                // Scroll to top of the page smoothly
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                
+                // Also scroll the main content area to top (in case it has its own scroll)
+                const mainContent = document.querySelector('.main-content');
+                if (mainContent) {
+                    mainContent.scrollTop = 0;
+                }
+            }
+        });
+    });
+}
+
+// Page navigation arrows functionality
+function initPageNavigation() {
+    const navArrowBtns = document.querySelectorAll('.nav-arrow-btn');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.page');
+    
+    navArrowBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetPage = this.getAttribute('data-target');
+            
+            // Remove active class from all nav links and pages
+            navLinks.forEach(nav => nav.classList.remove('active'));
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Add active class to corresponding nav link
+            const targetNavLink = document.querySelector(`[data-page="${targetPage}"]`);
+            if (targetNavLink) {
+                targetNavLink.classList.add('active');
+            }
+            
+            // Show target page
+            const targetPageElement = document.getElementById(targetPage);
+            if (targetPageElement) {
+                targetPageElement.classList.add('active');
+                
+                // Scroll to top of the page smoothly
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                
+                // Also scroll the main content area to top (in case it has its own scroll)
+                const mainContent = document.querySelector('.main-content');
+                if (mainContent) {
+                    mainContent.scrollTop = 0;
+                }
             }
         });
     });
