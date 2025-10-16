@@ -1452,6 +1452,207 @@
         </section> -->
     </main>
 
-    <script src="static/js/main.js"></script>
+    <script>
+        // Portfolio navigation and chatbot functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize navigation
+            initNavigation();
+            
+            // Initialize chatbot
+            initChatbot();
+            
+            // Initialize project modals
+            initProjectModals();
+            
+            // Initialize gallery
+            initGallery();
+            
+            // Initialize dynamic duration calculation
+            initDynamicDuration();
+            
+            // Initialize page navigation arrows
+            initPageNavigation();
+        });
+
+        // Navigation functionality
+        function initNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Remove active class from all nav links and pages
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    pages.forEach(page => page.classList.remove('active'));
+                    
+                    // Add active class to clicked nav link
+                    this.classList.add('active');
+                    
+                    // Show target page
+                    const targetPageElement = document.getElementById(targetPage);
+                    if (targetPageElement) {
+                        targetPageElement.classList.add('active');
+                        
+                        // Use setTimeout to ensure DOM is updated first, then scroll
+                        setTimeout(() => {
+                            // Try multiple scroll methods for better compatibility
+                            try {
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            } catch (e) {
+                                // Fallback for older browsers/environments
+                                document.body.scrollTop = 0; // For Safari
+                                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                            }
+                            
+                            // Also scroll the main content area
+                            const mainContent = document.querySelector('.main-content');
+                            if (mainContent) {
+                                mainContent.scrollTop = 0;
+                            }
+                        }, 50);
+                    }
+                });
+            });
+        }
+
+        // Page navigation arrows functionality
+        function initPageNavigation() {
+            const navArrowBtns = document.querySelectorAll('.nav-arrow-btn');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            
+            navArrowBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetPage = this.getAttribute('data-target');
+                    
+                    // Remove active class from all nav links and pages
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    pages.forEach(page => page.classList.remove('active'));
+                    
+                    // Add active class to corresponding nav link
+                    const targetNavLink = document.querySelector(`[data-page="${targetPage}"]`);
+                    if (targetNavLink) {
+                        targetNavLink.classList.add('active');
+                    }
+                    
+                    // Show target page
+                    const targetPageElement = document.getElementById(targetPage);
+                    if (targetPageElement) {
+                        targetPageElement.classList.add('active');
+                        
+                        // Use setTimeout to ensure DOM is updated first, then scroll
+                        setTimeout(() => {
+                            // Try multiple scroll methods for better compatibility
+                            try {
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            } catch (e) {
+                                // Fallback for older browsers/environments
+                                document.body.scrollTop = 0; // For Safari
+                                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                            }
+                            
+                            // Also scroll the main content area
+                            const mainContent = document.querySelector('.main-content');
+                            if (mainContent) {
+                                mainContent.scrollTop = 0;
+                            }
+                        }, 50);
+                    }
+                });
+            });
+        }
+
+        // Dynamic duration calculation for AI Engineer role
+        function initDynamicDuration() {
+            calculateAIEngineerDuration();
+            
+            // Update duration every hour (3600000 milliseconds)
+            setInterval(calculateAIEngineerDuration, 3600000);
+        }
+
+        function calculateAIEngineerDuration() {
+            // Start date: March 2023 (assuming March 1, 2023)
+            const startDate = new Date('2023-03-01');
+            const currentDate = new Date();
+            
+            // Calculate the difference in months
+            const yearsDiff = currentDate.getFullYear() - startDate.getFullYear();
+            const monthsDiff = currentDate.getMonth() - startDate.getMonth();
+            
+            // Calculate total months
+            const totalMonths = (yearsDiff * 12) + monthsDiff;
+            
+            // Convert to years and months
+            const years = Math.floor(totalMonths / 12);
+            const months = totalMonths % 12;
+            
+            // Format the duration text
+            let durationText = '';
+            if (years > 0 && months > 0) {
+                durationText = `${years} year${years > 1 ? 's' : ''} and ${months} month${months > 1 ? 's' : ''} ongoing`;
+            } else if (years > 0) {
+                durationText = `${years} year${years > 1 ? 's' : ''} ongoing`;
+            } else if (months > 0) {
+                durationText = `${months} month${months > 1 ? 's' : ''} ongoing`;
+            } else {
+                durationText = 'Recently started';
+            }
+            
+            // Update the duration badge
+            const durationElement = document.getElementById('ai-engineer-duration');
+            if (durationElement) {
+                durationElement.textContent = durationText;
+            }
+        }
+
+        // Chatbot functionality (placeholder for future implementation)
+        function initChatbot() {
+            // Chatbot functionality can be added here if needed
+        }
+
+        // Project modal functionality (simplified for essential features)
+        function initProjectModals() {
+            const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
+            
+            viewDetailsBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    // Modal functionality can be expanded here if needed
+                    console.log('Project modal clicked');
+                });
+            });
+        }
+
+        // Gallery functionality (simplified for essential features)
+        function initGallery() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active filter button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter gallery items
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+    </script>
 </body>
 </html>
