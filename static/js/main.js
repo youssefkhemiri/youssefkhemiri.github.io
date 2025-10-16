@@ -42,17 +42,23 @@ function initNavigation() {
             if (targetPageElement) {
                 targetPageElement.classList.add('active');
                 
-                // Scroll to top of the page smoothly
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-                
-                // Also scroll the main content area to top (in case it has its own scroll)
-                const mainContent = document.querySelector('.main-content');
-                if (mainContent) {
-                    mainContent.scrollTop = 0;
-                }
+                // Use setTimeout to ensure DOM is updated first, then scroll
+                setTimeout(() => {
+                    // Try multiple scroll methods for better compatibility
+                    try {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } catch (e) {
+                        // Fallback for older browsers/environments
+                        document.body.scrollTop = 0; // For Safari
+                        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                    }
+                    
+                    // Also scroll the main content area
+                    const mainContent = document.querySelector('.main-content');
+                    if (mainContent) {
+                        mainContent.scrollTop = 0;
+                    }
+                }, 50);
             }
         });
     });
@@ -85,17 +91,23 @@ function initPageNavigation() {
             if (targetPageElement) {
                 targetPageElement.classList.add('active');
                 
-                // Scroll to top of the page smoothly
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-                
-                // Also scroll the main content area to top (in case it has its own scroll)
-                const mainContent = document.querySelector('.main-content');
-                if (mainContent) {
-                    mainContent.scrollTop = 0;
-                }
+                // Use setTimeout to ensure DOM is updated first, then scroll
+                setTimeout(() => {
+                    // Try multiple scroll methods for better compatibility
+                    try {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } catch (e) {
+                        // Fallback for older browsers/environments
+                        document.body.scrollTop = 0; // For Safari
+                        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                    }
+                    
+                    // Also scroll the main content area
+                    const mainContent = document.querySelector('.main-content');
+                    if (mainContent) {
+                        mainContent.scrollTop = 0;
+                    }
+                }, 50);
             }
         });
     });
