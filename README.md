@@ -1,227 +1,89 @@
-# Youssef Khemiri Portfolio# Youssef Khemiri Portfolio
+# Youssef Khemiri — Portfolio
 
+A modern, responsive portfolio site showcasing my work across **AI engineering, data science, automation, and software engineering**. Currently open to full-time and freelance roles.
 
+🌐 **Live site:** [youssefkhemiri.github.io](https://youssefkhemiri.github.io)
 
-A modern, responsive portfolio website showcasing my skills, projects, and experience as an AI Engineer and Data Scientist working across AI engineering, data science, automation, and software engineering. Open to full-time and freelance roles.
+## Overview
 
+A dependency-free static site: one HTML file, one stylesheet, no build step and no framework. Navigation, project modals, and the photo gallery are handled by vanilla JavaScript embedded at the bottom of `index.html`.
 
+**Sections:** Home (about, what I do, education, certifications, skills) · Career · Projects · Involvements
 
-🌐 **Live Site:** [https://youssefkhemiri.github.io](https://youssefkhemiri.github.io)🌐 **Live Site:** [https://youssefkhemiri.github.io](https://youssefkhemiri.github.io)
-
-
-
-## 🚀 Features## 🚀 Features
-
-
-
-- **Responsive Design**: Modern CSS with mobile-first approach- **Responsive Design**: Modern CSS with mobile-first approach
-
-- **Single Page Application**: Client-side navigation using JavaScript- **Single Page Application**: Client-side navigation using JavaScript
-
-- **Interactive Chatbot**: AI assistant with keyword-based responses- **Interactive Chatbot**: AI assistant with keyword-based responses
-
-- **5 Main Sections**: Home, Career, Projects, Involvements, Chatbot- **5 Main Sections**: Home, Career, Projects, Involvements, Chatbot
-
-- **GitHub Pages Ready**: Static website optimized for GitHub Pages hosting- **GitHub Pages Ready**: Static website optimized for GitHub Pages hosting
-
-- **Easy Content Management**: Separate data configuration file
-
-## 📁 Project Structure- **Session-based Chat**: Persistent chat history during session
-
-
-
-```## 📁 Project Structure
-
-youssefkhemiri.github.io/
-
-├── index.html               # Main HTML file```
-
-├── static/Youssef_portfolio/
-
-│   ├── css/├── app.py                    # Main Flask application
-
-│   │   └── style.css       # Styling and responsive design├── portfolio_data.py         # Portfolio content configuration
-
-│   ├── js/├── requirements.txt          # Python dependencies
-
-│   │   └── main.js         # Navigation and chatbot functionality├── README.md                # This documentation
-
-│   └── assets/├── templates/
-
-│       ├── images/         # Profile and project images│   └── index.html           # Main template (no JavaScript)
-
-│       └── *.pdf           # Resume files└── static/
-
-└── README.md               # This file    └── css/
-
-```        └── style.css        # Styling and responsive design
+## Project structure
 
 ```
+youssefkhemiri.github.io/
+├── index.html                  # Entire site: markup + inline JS
+├── static/
+│   ├── css/
+│   │   └── style.css           # All styling, dark theme, responsive
+│   └── assets/
+│       ├── images/
+│       │   ├── profile.jpg     # Sidebar profile photo
+│       │   ├── projects/       # Project card images
+│       │   └── involvements/   # Photo gallery images
+│       └── *.pdf               # Résumé files
+└── README.md
+```
 
-## 🎨 Technologies Used
+## Tech stack
 
-## 🛠️ Setup and Installation
+- **Markup & styling:** HTML5, CSS3 (Grid, Flexbox, custom properties)
+- **Scripting:** Vanilla JavaScript (ES6+), no dependencies
+- **Icons:** Font Awesome 6.0.0 (CDN)
+- **Fonts:** Inter (Google Fonts)
+- **Hosting:** GitHub Pages
 
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+## Local development
 
-- **Styling**: Pure CSS with CSS Grid & Flexbox1. **Clone or download** the project files
+```bash
+git clone https://github.com/youssefkhemiri/youssefkhemiri.github.io.git
+cd youssefkhemiri.github.io
+python -m http.server 8000
+```
 
-- **Icons**: Font Awesome 6.0.02. **Install dependencies**:
+Then open <http://localhost:8000>. Opening `index.html` directly also works, since there is no build step.
 
-- **Fonts**: Inter font family   ```bash
+## Editing content
 
-- **Hosting**: GitHub Pages   pip install -r requirements.txt
+Everything lives in `index.html`:
 
-   ```
+| What to change | Where |
+| --- | --- |
+| Name, roles, availability, social links | `<aside class="sidebar">` |
+| About text, what I do, education, certifications, skills | `<section id="home">` |
+| Work history | `<section id="career">` — one `.timeline-item` per role |
+| Project cards | `<section id="projects">` — one `.project-card` per project |
+| Project modal content | `projectData` object in the inline `<script>` |
+| Awards, teaching, leadership, photo gallery | `<section id="involvements">` |
 
-## 🛠️ Local Development3. **Run the application**:
+**Adding a project** takes two edits: a `.project-card` in the projects grid, and a matching entry in `projectData` keyed by the same `data-project` value. Mismatched keys mean the "View Details" modal silently won't open.
 
-   ```bash
+**Adding gallery photos:** drop the image in `static/assets/images/involvements/`, then add a `.gallery-item` with a `data-category` matching one of the existing filter buttons.
 
-1. **Clone the repository**:   python app.py
+The availability banner on the home page is commented out — uncomment the `.internship-banner` block in `<section id="home">` to display it.
 
-   ```bash   ```
+## Deployment
 
-   git clone https://github.com/youssefkhemiri/youssefkhemiri.github.io.git4. **Open your browser** and navigate to: `http://localhost:5000`
+Pushing to `main` deploys automatically via GitHub Pages (Settings → Pages → deploy from `main`, `/` root).
 
-   ```
+```bash
+git add .
+git commit -m "Update portfolio content"
+git push origin main
+```
 
-## ✏️ Customizing Your Portfolio
+## Responsive behaviour
 
-2. **Open locally**:
+- **Desktop:** fixed sidebar with main content area
+- **Tablet:** sidebar collapses, layout reflows to a single column
+- **Mobile:** stacked cards, touch-friendly navigation
 
-   Simply open `index.html` in your web browser, or use a local server:### **Updating Content**
+## License
 
-   ```bash
+Personal portfolio. Feel free to use the structure as inspiration for your own, but please don't reuse the personal content.
 
-   # Using PythonAll portfolio content is managed in `portfolio_data.py`. Simply edit this file to update:
+---
 
-   python -m http.server 8000
-
-   - **Personal Information**: Name, roles, email, social links
-
-   # Using Node.js- **About Section**: Personal description and background
-
-   npx serve .- **Education**: Degrees, institutions, years, descriptions
-
-   ```- **Skills**: Technical skills (categorized) and soft skills
-
-- **Career History**: Positions, companies, achievements
-
-3. **Visit**: `http://localhost:8000`- **Projects**: Project details, technologies, links
-
-- **Involvements**: Volunteer work, awards, competitions, teaching
-
-## ✏️ Customizing Content
-
-### **Chatbot Responses**
-
-### **Updating Personal Information**
-
-Update the `CHATBOT_RESPONSES` dictionary in `portfolio_data.py` to customize chatbot answers for different topics.
-
-Edit the content directly in `index.html` - all personal information, projects, and experience details are embedded in the HTML file for easy maintenance.
-
-### **Adding Images**
-
-### **Adding Images**
-
-1. Create directories: `static/assets/images/`
-
-1. Add images to `static/assets/images/`2. Add your profile photo as: `static/assets/images/profile.jpg`
-
-2. Update the image references in `index.html`3. Add project images and update the `image` field in project data
-
-3. Supported formats: JPG, PNG, WebP4. For resume download, add: `static/assets/Youssef_Resume.pdf`
-
-
-
-### **Modifying Chatbot Responses**## 🎨 Styling
-
-
-
-Update the `chatbotResponses` object in `static/js/main.js` to customize the AI assistant's responses.The application uses modern CSS with:
-
-- **CSS Grid & Flexbox** for responsive layouts
-
-## 🚀 Deployment to GitHub Pages- **CSS Variables** for consistent theming
-
-- **Font Awesome** icons for visual elements
-
-1. **Push to GitHub**:- **Placeholder styles** for missing images
-
-   ```bash
-
-   git add .## 🤖 Chatbot Features
-
-   git commit -m "Update portfolio content"
-
-   git push origin mainThe chatbot responds to keywords related to:
-
-   ```- Technologies and skills
-
-- Projects and work experience
-
-2. **Enable GitHub Pages**:- Education and background
-
-   - Go to your repository settings- Contact information
-
-   - Scroll to "Pages" section- Career experience
-
-   - Select "Deploy from a branch"- Achievements and awards
-
-   - Choose "main" branch and "/ (root)" folder
-
-   - Save settings## 🔧 Technical Details
-
-
-
-3. **Access your site**: `https://youssefkhemiri.github.io`- **Framework**: Flask 2.3.3
-
-- **Templating**: Jinja2
-
-## 🤖 Chatbot Features- **Session Management**: Flask sessions for chat history
-
-- **Styling**: Pure CSS (no CSS frameworks)
-
-The AI assistant responds to keywords related to:- **Icons**: Font Awesome 6.0.0
-
-- Technologies and skills- **Fonts**: Inter font family
-
-- Projects and work experience
-
-- Education and background## 📋 Dependencies
-
-- Contact information
-
-- Career experienceSee `requirements.txt` for the complete list. Main dependencies:
-
-- Achievements and awards- Flask 2.3.3
-
-- Jinja2 (included with Flask)
-
-## 📱 Responsive Design
-
-## 🚀 Deployment
-
-- **Desktop**: Full sidebar navigation with main content area
-
-- **Tablet**: Optimized layout for medium screensFor production deployment:
-
-- **Mobile**: Collapsible navigation with touch-friendly interface1. Change the secret key in `app.py`
-
-2. Set `debug=False`
-
-## 📄 License3. Use a production WSGI server like Gunicorn
-
-4. Configure environment variables
-
-This is a personal portfolio website. Feel free to use as inspiration for your own portfolio, but please don't copy the personal content.5. Set up proper file serving for static assets
-
-
-
----## 📄 License
-
-
-
-**Built with ❤️ by Youssef Khemiri**This is a personal portfolio template. Feel free to use and modify for your own portfolio needs.
+**Built with ❤️ by Youssef Khemiri**
