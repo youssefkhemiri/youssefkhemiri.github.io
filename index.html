@@ -15,8 +15,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
+    <!-- Mobile top bar — hidden above 1024px -->
+    <header class="mobile-topbar">
+        <span class="mobile-topbar-name">Youssef Khemiri</span>
+        <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
     <!-- Fixed Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
         <div class="profile-section">
             <div class="profile-image">
                 <img src="static/assets/images/profile.jpg" alt="Youssef Khemiri Profile Picture"/>
@@ -1304,15 +1313,6 @@
                     </div>
                 </div>
 
-                <div class="involvement-section">
-                    <h3><i class="fas fa-table-tennis-paddle-ball"></i> Interests</h3>
-                    <div class="involvement-items">
-                        <div class="involvement-item">
-                            <h4>Ping-Pong</h4>
-                            <p>If you open my backpack: laptop for code, and ping-pong gear to keep reflexes just as sharp.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Photo Gallery Section -->
@@ -1518,7 +1518,7 @@
                         <i class="fas fa-handshake"></i> Team Work
                     </button>
                     <button class="filter-btn" data-filter="presentations">
-                        <i class="fas fa-presentation"></i> Presentations
+                        <i class="fas fa-microphone-lines"></i> Presentations
                     </button>
                 </div>
             </div>
@@ -1580,7 +1580,47 @@
             
             // Initialize page navigation arrows
             initPageNavigation();
+
+            // Initialize the mobile navigation drawer
+            initMobileNav();
         });
+
+        // Mobile navigation drawer
+        function initMobileNav() {
+            const toggle = document.getElementById('navToggle');
+            const backdrop = document.getElementById('navBackdrop');
+            const sidebar = document.getElementById('sidebar');
+            if (!toggle || !sidebar || !backdrop) return;
+
+            function setOpen(open) {
+                sidebar.classList.toggle('open', open);
+                backdrop.classList.toggle('visible', open);
+                toggle.setAttribute('aria-expanded', String(open));
+                toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+                toggle.querySelector('i').className = open ? 'fas fa-xmark' : 'fas fa-bars';
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
+
+            toggle.addEventListener('click', function() {
+                setOpen(!sidebar.classList.contains('open'));
+            });
+
+            backdrop.addEventListener('click', () => setOpen(false));
+
+            // Close the drawer after picking a destination
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => setOpen(false));
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && sidebar.classList.contains('open')) setOpen(false);
+            });
+
+            // Reset state if the viewport grows past the drawer breakpoint
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 1024 && sidebar.classList.contains('open')) setOpen(false);
+            });
+        }
 
         // Navigation functionality
         function initNavigation() {
@@ -2216,25 +2256,100 @@
         // Gallery functionality (simplified for essential features)
         function initGallery() {
             const filterBtns = document.querySelectorAll('.filter-btn');
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            
+            const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
                     const filter = this.getAttribute('data-filter');
-                    
+
                     // Update active filter button
                     filterBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-                    
+
                     // Filter gallery items
                     galleryItems.forEach(item => {
                         if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                            item.style.display = 'block';
+                            item.style.display = '';
                         } else {
                             item.style.display = 'none';
                         }
                     });
                 });
+            });
+
+            // --- Lightbox ---
+            const modal = document.getElementById('galleryModal');
+            const modalImage = document.getElementById('galleryModalImage');
+            const modalTitle = document.getElementById('galleryModalTitle');
+            const modalDesc = document.getElementById('galleryModalDescription');
+            const closeBtn = document.querySelector('.gallery-modal-close');
+            const prevBtn = document.getElementById('galleryPrev');
+            const nextBtn = document.getElementById('galleryNext');
+            if (!modal || !modalImage) return;
+
+            let currentIndex = 0;
+
+            // Only step through items the active filter is showing
+            function visibleItems() {
+                return galleryItems.filter(item => item.style.display !== 'none');
+            }
+
+            function show(item) {
+                const img = item.querySelector('img');
+                const info = item.querySelector('.gallery-info');
+                modalImage.src = img ? img.src : '';
+                modalImage.alt = img ? img.alt : '';
+                modalTitle.textContent = info && info.querySelector('h4') ? info.querySelector('h4').textContent : '';
+                modalDesc.textContent = info && info.querySelector('p') ? info.querySelector('p').textContent : '';
+            }
+
+            function openModal(item) {
+                const items = visibleItems();
+                currentIndex = items.indexOf(item);
+                show(item);
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                if (closeBtn) closeBtn.focus();
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function step(delta) {
+                const items = visibleItems();
+                if (!items.length) return;
+                currentIndex = (currentIndex + delta + items.length) % items.length;
+                show(items[currentIndex]);
+            }
+
+            galleryItems.forEach(item => {
+                item.setAttribute('role', 'button');
+                item.setAttribute('tabindex', '0');
+                item.addEventListener('click', () => openModal(item));
+                item.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openModal(item);
+                    }
+                });
+            });
+
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            if (prevBtn) prevBtn.addEventListener('click', () => step(-1));
+            if (nextBtn) nextBtn.addEventListener('click', () => step(1));
+
+            // Click the backdrop (but not the image or its controls) to dismiss
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModal();
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (!modal.classList.contains('active')) return;
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowLeft') step(-1);
+                if (e.key === 'ArrowRight') step(1);
             });
         }
     </script>
