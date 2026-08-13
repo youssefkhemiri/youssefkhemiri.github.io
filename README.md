@@ -81,9 +81,8 @@ git push origin main
 - **Mobile:** stacked cards, touch-friendly navigation
 
 ## License
+YES
 
-Personal portfolio. Feel free to use the structure as inspiration for your own, but please don't reuse the personal content.
-
----
+--- 
 
 **Built with ❤️ by Youssef Khemiri**
