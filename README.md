@@ -2,7 +2,7 @@
 
 
 
-A modern, responsive portfolio website showcasing my skills, projects, and experience as a Computer Science student and software developer.A modern, responsive portfolio website showcasing my skills, projects, and experience as a Computer Science student and software developer.
+A modern, responsive portfolio website showcasing my skills, projects, and experience as an AI Engineer and Data Scientist working across AI engineering, data science, automation, and software engineering. Open to full-time and freelance roles.
 
 
 
