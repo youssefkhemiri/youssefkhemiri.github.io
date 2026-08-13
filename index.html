@@ -1727,6 +1727,87 @@
             
             // Project data
             const projectData = {
+                'insurancepolicies': {
+                    title: 'Large-Scale US Insurance Policy Pipeline',
+                    images: ['static/assets/images/portfolio.jpg'],
+                    overview: 'Built a large-scale data pipeline that collects, normalizes, and stores medical policy documents published by major US insurance providers, including Aetna, Anthem, Medicare, and Humana. Each provider publishes coverage policies in a different way — paginated HTML libraries, bulk PDF archives, and dynamically rendered pages — so the pipeline wraps every source behind a common adapter interface and lands everything in AWS S3 under one consistent schema. The codebase deliberately mixes Python and TypeScript, using whichever fit the target and the surrounding services best.',
+                    features: [
+                        'Provider-specific scrapers for Aetna, Anthem, Medicare, and Humana policy libraries',
+                        'Shared adapter interface so each provider is isolated behind the same contract',
+                        'Large-scale collection with pagination, retries, backoff, and rate-limit handling',
+                        'Dynamic page rendering applied only where a provider requires it',
+                        'Normalization of heterogeneous HTML and PDF sources into a consistent schema',
+                        'Metadata extraction: policy identifiers, effective dates, revisions, coverage category',
+                        'Partitioned storage in AWS S3 organized for downstream querying',
+                        'Content hashing for change detection so runs stay incremental',
+                        'Defensive parsing with alerting, so format changes fail loudly instead of writing bad data',
+                        'Logging and monitoring across long-running scrape jobs'
+                    ],
+                    challenges: 'The core difficulty was heterogeneity: no two providers expose their policies the same way, and any of them can change layout without notice. Naive full re-scraping was impractical at this volume, and silent format drift is worse than an outright failure because it quietly corrupts the dataset. The pipeline addresses this with a per-provider adapter pattern behind a shared interface, dynamic rendering reserved only for sources that need it, content hashing so each run reprocesses only new or revised policies, and strict validation on extracted fields so an unexpected layout raises an alert rather than persisting empty or malformed records.',
+                    results: 'Consolidated policy documents from four major providers into a single normalized S3 dataset that downstream systems can query directly, replacing manual document collection. Incremental change detection kept recurring runs inexpensive at scale, and the adapter isolation meant a layout change at one provider never took the rest of the pipeline down with it.',
+                    duration: '3 months',
+                    team: 'Team Collaboration',
+                    year: '2025',
+                    status: 'Completed',
+                    tech: ['Python', 'TypeScript', 'Web Scraping', 'AWS S3', 'Data Engineering', 'ETL', 'Document Processing', 'PDF Parsing', 'Automation', 'Monitoring'],
+                    links: [
+                        { type: 'info', url: '#', label: 'Professional Work' }
+                    ]
+                },
+                'customevals': {
+                    title: 'Custom LLM Evaluation Framework',
+                    images: ['static/assets/images/portfolio.jpg'],
+                    overview: 'Designed a custom evaluation framework for measuring LLM output quality on real production tasks and using those measurements to pick the most cost-efficient model that still clears the quality bar. Rather than collapsing everything into one opaque score, the framework layers several independent checks — each targeting a distinct failure mode — and combines them into a per-task scorecard alongside cost and latency, so model selection becomes an evidence-based decision instead of defaulting to the largest available model.',
+                    features: [
+                        'Structural validation: schema and JSON conformance with field-level checks',
+                        'Grounded comparison: output verified against source context to catch unsupported claims',
+                        'Embedding-based similarity scoring against reference answers',
+                        'Behavioral checks: instruction following, format adherence, refusal handling',
+                        'Consistency checks: repeated sampling to measure output stability across runs',
+                        'Cheap deterministic checks run before expensive semantic ones',
+                        'Side-by-side model comparison across quality, cost, and latency',
+                        'Per-task scorecards used to select the cheapest model meeting the quality threshold',
+                        'Reusable harness so new tasks can be evaluated without writing new eval code',
+                        'Regression detection to catch schema drift and ungrounded output before release'
+                    ],
+                    challenges: 'Open-ended LLM output resists single-number scoring: embedding similarity rewards paraphrase but misses factual drift, structural checks confirm shape while saying nothing about correctness, and naive LLM-as-judge is both expensive and inconsistent run to run. The framework handles this by treating each check as an independent signal on a specific failure mode, ordering them cheapest-first so deterministic validation rejects bad output before any semantic scoring is paid for, and using repeated-sampling consistency to expose prompts that only appear to work. The final scorecard keeps the cost and quality tradeoff explicit rather than hiding it behind an aggregate.',
+                    results: 'Produced a repeatable, defensible basis for model selection per task. In several cases it showed a smaller and substantially cheaper model already met the quality bar, and the layered checks caught regressions such as schema drift and ungrounded claims before they reached production. New tasks now plug into the existing harness instead of requiring bespoke evaluation work each time.',
+                    duration: '6 weeks',
+                    team: 'Solo Project',
+                    year: '2026',
+                    status: 'Completed',
+                    tech: ['Python', 'LLMs', 'LLM Evaluation', 'Embeddings', 'Vector Similarity', 'Prompt Engineering', 'Model Benchmarking', 'JSON Schema', 'Cost Optimization'],
+                    links: [
+                        { type: 'info', url: '#', label: 'Professional Work' }
+                    ]
+                },
+                'fifamonitoring': {
+                    title: 'Real-Time PS5 Game Session Monitoring',
+                    images: ['static/assets/images/portfolio.jpg'],
+                    overview: 'Built a computer vision system that monitors a live PS5 video feed to detect FIFA matches as they happen, tracking how many games were played and how much active playtime elapsed so session costs can be calculated automatically. The system reads on-screen state directly from the feed, distinguishing real gameplay from menus, replays, and idle screens, and models a session as a state machine so that transient noise in a few frames never corrupts the count.',
+                    features: [
+                        'Real-time frame capture and analysis of a live PS5 feed',
+                        'Automatic detection of match start, half time, and full time from on-screen UI',
+                        'Template matching and OCR over targeted screen regions to read scoreboards and timers',
+                        'State machine modelling the full session lifecycle',
+                        'Gameplay distinguished from menus, replays, cutscenes, and idle screens',
+                        'Per-session tracking of games played and total active playtime',
+                        'Automated cost calculation derived from tracked playtime',
+                        'Temporal smoothing and debouncing so noisy frames cannot flip detected state',
+                        'Resilient to brief feed dropouts without double counting a match',
+                        'Session logs exported for downstream reporting'
+                    ],
+                    challenges: 'The hard part was not recognizing the game but knowing when play was actually happening: menus, replays, and celebration cutscenes all look like gameplay to a naive classifier, and the feed had to be processed continuously without falling behind real time. Running full-frame inference on every frame was far too slow, so detection was narrowed to lightweight template matching and OCR over the specific screen regions that carry state. A session state machine with temporal smoothing then made the result stable, so a handful of ambiguous or dropped frames could not flip the detected state or double count a completed match.',
+                    results: 'Removed manual logging of console sessions entirely: games played and active playtime are now captured automatically and converted into cost figures without anyone watching the screen. Restricting analysis to targeted screen regions kept the system comfortably real time on ordinary hardware, and the state machine held up across different game modes and capture conditions.',
+                    duration: '4 weeks',
+                    team: 'Solo Project',
+                    year: '2025',
+                    status: 'Completed',
+                    tech: ['Python', 'OpenCV', 'Computer Vision', 'Real-Time Processing', 'OCR', 'Template Matching', 'Screen Capture', 'Automation'],
+                    links: [
+                        { type: 'info', url: '#', label: 'Professional Work' }
+                    ]
+                },
                 'emailagent': {
                     title: 'AI Email Multi-Agent System',
                     images: ['static/assets/images/projects/project1.png'],
